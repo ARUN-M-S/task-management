@@ -1,117 +1,77 @@
 [
     {
-        "name":"Backlog",
+        "name": "To Do",
         "items": [
             {
-                "id":1,
-                "priority": 0,
+                "id": 1,
                 "title": "Company website redesign.",
-                "chat": 1,
-                "attachment": 2,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/75.jpg"
-                    }
-                ]
+                "description": "Revamp the company website to improve user experience and design.",
+                "priority": 0,
+                "status":"To Do"
             },
             {
-                "id":2,
-                "priority": 2,
+                "id": 2,
                 "title": "Mobile app login process prototype.",
-                "chat": 10,
-                "attachment": 4,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/67.jpg"
-                    }
-                ]
+                "description": "Create a prototype for the login process of the mobile app.",
+                "priority": 2,
+                "status":"To Do"
             }
         ]
     },
     {
-        "name":"In Progress",
+        "name": "In Progress",
         "items": [
             {
-                "id":3,
-                "priority": 1,
+                "id": 3,
                 "title": "Research and strategy for upcoming project.",
-                "chat": 0,
-                "attachment": 3,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/79.jpg"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name":"In Review",
-        "items": [
-            {
-                "id":4,
-                "priority": 2,
-                "title": "Dashboard layout redesign.",
-                "chat": 13,
-                "attachment": 2,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/75.jpg"
-                    }
-                ]
-            },
-            {
-                "id":5,
-                "priority": 0,
-                "title": "Social media posts",
-                "chat": 0,
-                "attachment": 0,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/68.jpg"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "name":"Completed",
-        "items": [
-            {
-                "id":6,
-                "priority": 0,
-                "title": "Review client spec document and give feedback.",
-                "chat": 13,
-                "attachment": 2,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/75.jpg"
-                    }
-                ]
-            },
-            {
-                "id":7,
+                "description": "Conduct research and develop a strategy for the next project.",
                 "priority": 1,
-                "title": "Navigation designs",
-                "chat": 0,
-                "attachment": 0,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/68.jpg"
-                    }
-                ]
+                "status":"In Progress"
+            }
+        ]
+    },
+    {
+        "name": "In Preview",
+        "items": [
+            {
+                "id": 4,
+                "title": "Dashboard layout redesign.",
+                "description": "Redesign the layout of the dashboard to enhance usability.",
+                "priority": 2,
+                "status":"In Preview"
             },
             {
-                "id":8,
-                "priority": 2,
+                "id": 5,
+                "title": "Social media posts",
+                "description": "Create and schedule social media posts for the upcoming month.",
+                "priority": 0,
+                "status":"In Preview"
+            }
+        ]
+    },
+    {
+        "name": "Completed",
+        "items": [
+            {
+                "id": 6,
+                "title": "Review client spec document and give feedback.",
+                "description": "Review the client specification document and provide feedback.",
+                "priority": 0,
+                "status":"Completed "
+            },
+            {
+                "id": 7,
+                "title": "Navigation designs",
+                "description": "Design the navigation interface for the website/application.",
+                "priority": 1,
+                "status":"Completed "
+            },
+            {
+                "id": 8,
                 "title": "Create style guide based on previous feedback",
-                "chat": 5,
-                "attachment": 2,
-                "assignees": [
-                    {
-                        "avt": "https://randomuser.me/api/portraits/men/64.jpg"
-                    }
-                ]
+                "description": "Develop a style guide reflecting the feedback received.",
+                "priority": 2,
+                "status":"Completed "
             }
         ]
     }
