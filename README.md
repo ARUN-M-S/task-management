@@ -1,10 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Task Management Application
+This is a Next.js project designed for task management. It provides a user-friendly interface for managing tasks with features such as creating, updating, and deleting tasks, and it supports real-time updates through WebSockets.
 
-## Getting Started
+Getting Started
+To get started with the project, follow these steps:
 
-First, run the development server:
+Clone the Repository
 
-```bash
+
+git clone <repository-url>
+
+
+Navigate to the Project Directory
+
+cd task-management
+Install Dependencies
+
+
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+Run the Development Server
+
+
+
 npm run dev
 # or
 yarn dev
@@ -12,25 +34,32 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
+Open http://localhost:3000 in your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Features
+Task Management: Create, update, delete, and view tasks.
+Real-Time Updates: Receive real-time updates on task changes via WebSockets.
+Task Organization: Manage tasks with different statuses (To Do, In Progress, In Review, Done).
+Project Structure
+app/page.tsx: The main page where you can start editing to build the application.
+components/: Reusable React components for the task management features.
+utils/: Utility functions and hooks for managing tasks and WebSocket connections.
+styles/: Styles and CSS files for the application.
+Learn More
+To learn more about Next.js and how to extend this project, check out the following resources:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Next.js Documentation - Learn about Next.js features and API.
+Learn Next.js - An interactive Next.js tutorial.
+You can also check out the Next.js GitHub repository for more information and to contribute.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Deploy on Vercel
+The easiest way to deploy your Next.js app is to use the Vercel Platform from the creators of Next.js.
 
-## Learn More
+For deployment details, refer to the Next.js deployment documentation.
 
-To learn more about Next.js, take a look at the following resources:
+Support
+If you encounter any issues or have questions, please refer to the Next.js documentation or open an issue on GitHub.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+License
+This project is licensed under the MIT License.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
