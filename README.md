@@ -1,7 +1,9 @@
-Task Management Application
+Task Management Application : 
+
 This is a Next.js project designed for task management. It provides a user-friendly interface for managing tasks with features such as creating, updating, and deleting tasks, and it supports real-time updates through WebSockets.
 
 Getting Started
+
 To get started with the project, follow these steps:
 
 Clone the Repository
@@ -17,22 +19,22 @@ Install Dependencies
 
 
 npm install
-# or
+ or
 yarn install
-# or
+ or
 pnpm install
-# or
+ or
 bun install
+
+
 Run the Development Server
 
-
-
 npm run dev
-# or
+ or
 yarn dev
-# or
+ or
 pnpm dev
-# or
+or
 bun dev
 Open http://localhost:3000 in your browser to see the result.
 
