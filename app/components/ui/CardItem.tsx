@@ -8,8 +8,9 @@ import { CardItemProps } from 'app/types/myTypes';
 
 
 const CardItem: React.FC<CardItemProps> = ({ data, onEdit, onDelete }) => {
+  
   return (
-    <Draggable index={data?.id} draggableId={data?.id.toString()}>
+    <Draggable key={data?.id} index={Number(data?.id)} draggableId={data?.id.toString()}>
       {(provided) => (
         <div
           ref={provided.innerRef}

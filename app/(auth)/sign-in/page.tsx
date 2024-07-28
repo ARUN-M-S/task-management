@@ -1,19 +1,33 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'
-
+import { AuthServices } from 'app/utils/services/api/apiService';
+import { signInRequest, signUpRequest } from 'app/utils/services/Dto/requestsTypes';
+import {io} from 'socket.io-client'
 const SignInPage = () => {
+    const [socket,setSocket] = useState<any>(undefined)
   const [gmail, setGmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-
-  const handleSubmit = (e: React.FormEvent) => {
+// useEffect(()=>{
+// const socket=io('http://localhost:4000')
+// setSocket(socket)
+// },[])
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+    let data:signInRequest= {
+        email:gmail,
+        password:password
 
+    }
+ let loginData = await AuthServices.signIn(data);
+ 
     // For demonstration, assuming successful sign-in
-    if (gmail === 'test@gmail.com' && password === 'password') {
+    if (loginData) {
       // Save authentication status in localStorage
       localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('token', loginData?.data?.token);
+
 
       // Redirect to the dashboard
       router.push('/');

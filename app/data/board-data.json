@@ -7,14 +7,14 @@
                 "title": "Company website redesign.",
                 "description": "Revamp the company website to improve user experience and design.",
                 "priority": 0,
-                "status":"To Do"
+                "status":"0"
             },
             {
                 "id": 2,
                 "title": "Mobile app login process prototype.",
                 "description": "Create a prototype for the login process of the mobile app.",
                 "priority": 2,
-                "status":"To Do"
+                "status":"1"
             }
         ]
     },

@@ -1,56 +1,88 @@
 import React, { useState, useEffect } from 'react';
-
-interface TaskData {
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  priority: string;
-}
+import { taskDataRequest } from 'app/utils/services/Dto/requestsTypes';
+import { getStatusValue } from 'app/utils/taskUtils';
 
 interface TaskModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (task: TaskData) => void;
-  task: TaskData | null;
+  onSave: (task: taskDataRequest) => void;
+  task: taskDataRequest | null;
+}
+
+export enum Status {
+  Todo = 1,
+  InProgress = 2,
+  Done = 0,
+  InPreview = 3,
 }
 
 const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, task }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [status, setStatus] = useState('To Do');
-  const [priority, setPriority] = useState('Low');
+  const [status, setStatus] = useState(Status.Todo.toString()); 
+  const [priority, setPriority] = useState('0'); 
 
   useEffect(() => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description);
-      setStatus(task.status);
-      setPriority(task.priority);
+      setStatus(task.status.toString()); 
+      setPriority(task.priority.toString());
     } else {
-      // Clear form when opening for new task
+      // Reset form when opening for new task
       setTitle('');
       setDescription('');
-      setStatus('To Do');
-      setPriority('Low');
+      setStatus(Status.Todo.toString());
+      setPriority('0');
     }
   }, [task]);
 
   if (!isOpen) return null;
 
   const handleSave = () => {
-    if (task) {
-      // Editing existing task
-      const updatedTask = { ...task, title, description, priority }; 
-      console.log(updatedTask,"update status");
+    if (title.length < 2) {
+        // Add validation error handling
+        alert('Title must be at least 2 characters long');
+        return;
+      }
+      if (description.length < 3) {
+          // Add validation error handling
+          alert('Description must be at least  characters long');
+          return;
+        }
+      if(task){
+        const updatedTask = { ...task, title, description, priority }; 
+        
+    //     console.log(Status[updatedTask?.status],"update status");
+        // updatedTask.status = getStatusValue[updatedTask?.status]
+        
+    //   //   updatedTask.status = Status.
+        onSave(updatedTask);
+
+      }else{
+
       
-      onSave(updatedTask);
-    } else {
-      // Adding new task
-      const newTask = { title, description, status, priority, id: Date.now() };
-      onSave(newTask);
-    }
+    
+
+    const newTask = {
+     
+      title,
+      description,
+      status: Number(status), 
+      priority: Number(priority), 
+    };
+    onSave(newTask);
+    setTitle('');
+    setDescription('');
+    setStatus(Status.Todo.toString());
+    setPriority('0');
     onClose();
+
+}
+
+
+    // Clear form and close modal after saving
+  
   };
 
   return (
@@ -76,6 +108,8 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, task }) 
                   onChange={(e) => setTitle(e.target.value)}
                   className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
                   placeholder="Title"
+                  minLength={2} // HTML5 validation
+                  required
                 />
               </div>
             </div>
@@ -100,13 +134,12 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, task }) 
                   name="status"
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  disabled={!!task} // Disable if editing an existing task
                   className={`mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md ${!!task ? 'bg-gray-100' : ''}`}
                 >
-                  <option>To Do</option>
-                  <option>In Progress</option>
-                  <option>In Preview</option>
-                  <option>Done</option>
+                  <option value={Status.Todo}>{Status.Todo === 1 ? 'To Do' : 'To Do'}</option>
+                  <option value={Status.InProgress}>{Status.InProgress === 2 ? 'In Progress' : 'In Progress'}</option>
+                  <option value={Status.InPreview}>{Status.InPreview === 3 ? 'In Preview' : 'In Preview'}</option>
+                  <option value={Status.Done}>{Status.Done === 0 ? 'Done' : 'Done'}</option>
                 </select>
               </div>
               <div>
@@ -118,9 +151,9 @@ const TaskModal: React.FC<TaskModalProps> = ({ isOpen, onClose, onSave, task }) 
                   onChange={(e) => setPriority(e.target.value)}
                   className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
                 >
-                  <option value="Low">Low</option>
-                  <option value="Medium">Medium</option>
-                  <option value="High">High</option>
+                  <option value="0">Low</option>
+                  <option value="1">Medium</option>
+                  <option value="2">High</option>
                 </select>
               </div>
             </div>
