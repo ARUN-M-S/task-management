@@ -1,6 +1,7 @@
 "use client"
 import { AuthServices } from 'app/utils/services/api/apiService';
 import { signUpRequest } from 'app/utils/services/Dto/requestsTypes';
+import { validateEmail, validatePassword } from 'app/utils/taskUtils';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
@@ -13,9 +14,23 @@ const SignUpPage = () => {
     const router = useRouter();
   
     const handleSubmit = async(e: React.FormEvent) => {
-        console.log(process.env.NEXT_PUBLIC_API_URL,"envvvvv");
+      
         
       e.preventDefault();
+      if (!name) {
+        alert('Please Provide a Name.');
+        return;
+      }
+      if (!validateEmail(gmail)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+    
+      if (!validatePassword(password)) {
+        alert('Password must be at least 6 characters long.');
+        return;
+      }
+    
       let data:signUpRequest ={
           email:gmail,
           password:password,

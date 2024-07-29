@@ -4,22 +4,31 @@ import { useRouter } from 'next/navigation'
 import { AuthServices } from 'app/utils/services/api/apiService';
 import { signInRequest, signUpRequest } from 'app/utils/services/Dto/requestsTypes';
 import {io} from 'socket.io-client'
+import { validateEmail, validatePassword } from 'app/utils/taskUtils';
 const SignInPage = () => {
     const [socket,setSocket] = useState<any>(undefined)
   const [gmail, setGmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-// useEffect(()=>{
-// const socket=io('http://localhost:4000')
-// setSocket(socket)
-// },[])
+
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateEmail(gmail)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+    
+      if (!validatePassword(password)) {
+        alert('Password must be at least 6 characters long.');
+        return;
+      }
+    
     let data:signInRequest= {
         email:gmail,
         password:password
 
     }
+    
  let loginData = await AuthServices.signIn(data);
  
     // For demonstration, assuming successful sign-in
