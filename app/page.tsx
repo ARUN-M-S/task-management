@@ -13,6 +13,7 @@ import useTaskSocket from "./utils/services/socket/useTaskSocket";
 import {io} from 'socket.io-client'
 import useSocket from "./utils/services/socket/useTaskSocket";
 import { taskDataRequest, TaskStatus } from "./utils/services/Dto/requestsTypes";
+import { useRouter } from "next/navigation";
 
 
 const Home = () => {
@@ -21,15 +22,43 @@ const Home = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedTask, setSelectedTask] = useState<any>(null);
    const [socket,setSocket]= useState<any>(undefined)
-  useEffect(()=>{
-    const socket=io('http://localhost:4000')
-    setSocket(socket)
-    },[])
+   const router = useRouter();
+
+  //  useEffect(() => {
+  //   const auth = localStorage.getItem('isAuthenticated');
+  //   if (auth === 'false') {
+  //     router.push('/sign-in');
+  //   }
+  // }, [router]);
+  // useEffect(()=>{
+  //   const socket=io('http://localhost:4000')
+  //   setSocket(socket)
+  //   },[])
+  // useEffect(() => {
+  //   if (process.browser) {
+  //     setReady(true);
+  //   }
+  // }, []);
   useEffect(() => {
-    if (process.browser) {
-      setReady(true);
+    // Check authentication
+    const auth = localStorage.getItem('isAuthenticated');
+    if (auth === 'false') {
+      router.push('/sign-in');
+      return; // Early exit if not authenticated
     }
-  }, []);
+
+    // Initialize socket connection
+    const socket = io('http://localhost:4000');
+    setSocket(socket);
+
+    // Set ready state on client-side
+    setReady(true);
+
+    // Cleanup on unmount
+    return () => {
+      socket.disconnect();
+    };
+  }, [router]);
   useEffect(() => {
     if (socket) {
       socket.on('taskUpdated', (data) => {
